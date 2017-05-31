@@ -1,4 +1,6 @@
 # Taken from https://www.mrexcel.com/forum/ provided by user VoG
+# This macro will adjust comments in excel so that they appear with the standard size next to their target cell
+# Fixes a bug where comments are shrunk and end up 10,000s of cells away
 
 
 Sub AutosizeComments()

@@ -1,0 +1,8 @@
+Sub AutosizeComments()
+    Dim cmt As Comment, cell As Range
+    On Error Resume Next
+    For Each cell In ActiveSheet.UsedRange
+        Set cmt = cell.Comment
+        If Not cmt Is Nothing Then cmt.Shape.TextFrame.AutoSize = True
+    Next cell
+End Sub

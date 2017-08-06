@@ -1,0 +1,62 @@
+Sub Mark_Long()
+    Dim iMyCount As Integer
+    Dim iWords As Integer
+    Dim iLongest As Integer
+    Dim iAlternate As Integer
+    
+
+    If Not ActiveDocument.Saved Then
+        ActiveDocument.Save
+    End If
+
+    'Reset counter
+    iMyCount = 0
+    iLongest = 0
+    iAlternate = 0
+
+    'Set number of words
+    iWords = InputBox("How many words?", "Long Sentence Finder", 40)
+    If Len(iWords) = 0 Then Exit Sub ' user canceled
+
+    For Each Mysent In ActiveDocument.Sentences
+        If Mysent.Words.Count > iWords Then
+            Mysent.Font.Color = wdColorBlue
+            iMyCount = iMyCount + 1
+            If iAlternate = 1 Then
+                Mysent.Font.Color = wdColorGreen
+                iAlternate = 0
+            Else
+                iAlternate = 1
+            End If
+        Else
+            iAlternate = 0
+        End If
+        If Mysent.Words.Count > iLongest Then
+            iLongest = Mysent.Words.Count
+        End If
+    Next
+    MsgBox iMyCount & " sentences longer than " & _
+      iWords & " words. The longest is " & iLongest & " words."
+End Sub
+
+Sub Undo_Mark_Long()
+    Dim iMyCount As Integer
+    Dim iWords As Integer
+
+    If Not ActiveDocument.Saved Then
+        ActiveDocument.Save
+    End If
+
+    'Reset counter
+    iMyCount = 0
+
+    'Set number of words
+    iWords = 1
+
+    For Each Mysent In ActiveDocument.Sentences
+        If Mysent.Words.Count > iWords Then
+            Mysent.Font.Color = wdColorBlack
+            iMyCount = iMyCount + 1
+        End If
+    Next
+End Sub

@@ -1,0 +1,83 @@
+Sub CopyRoster()
+'Clear current sheets
+Worksheets("Nurses").Range("A:P").EntireColumn.Delete
+Worksheets("Vets").Range("A:P").EntireColumn.Delete
+
+'Build sheet for nurses
+Worksheets("Week 1").Range("A1:H33").Copy
+Worksheets("Nurses").Range("A1:H33").PasteSpecial Paste:=xlPasteValues
+Worksheets("Nurses").Range("A1:H33").PasteSpecial Paste:=xlPasteFormats
+
+Worksheets("Week 2").Range("A1:H33").Copy
+Worksheets("Nurses").Range("A34:H66").PasteSpecial Paste:=xlPasteValues
+Worksheets("Nurses").Range("A34:H66").PasteSpecial Paste:=xlPasteFormats
+
+Worksheets("Week 3").Range("A1:H33").Copy
+Worksheets("Nurses").Range("A67:H99").PasteSpecial Paste:=xlPasteValues
+Worksheets("Nurses").Range("A67:H99").PasteSpecial Paste:=xlPasteFormats
+
+Worksheets("Week 4").Range("A1:H33").Copy
+Worksheets("Nurses").Range("A100:H132").PasteSpecial Paste:=xlPasteValues
+Worksheets("Nurses").Range("A100:H132").PasteSpecial Paste:=xlPasteFormats
+
+'Build sheet for Vets
+Worksheets("Week 1").Range("A1:H2").Copy
+Worksheets("Vets").Range("A1:H2").PasteSpecial Paste:=xlPasteValues
+Worksheets("Vets").Range("A1:H2").PasteSpecial Paste:=xlPasteFormats
+
+Worksheets("Week 1").Range("A34:H52").Copy
+Worksheets("Vets").Range("A3:H21").PasteSpecial Paste:=xlPasteValues
+Worksheets("Vets").Range("A3:H21").PasteSpecial Paste:=xlPasteFormats
+
+Worksheets("Week 2").Range("A1:H2").Copy
+Worksheets("Vets").Range("A34:H35").PasteSpecial Paste:=xlPasteValues
+Worksheets("Vets").Range("A34:H35").PasteSpecial Paste:=xlPasteFormats
+
+Worksheets("Week 2").Range("A34:H52").Copy
+Worksheets("Vets").Range("A36:H54").PasteSpecial Paste:=xlPasteValues
+Worksheets("Vets").Range("A36:H54").PasteSpecial Paste:=xlPasteFormats
+    
+Worksheets("Week 3").Range("A1:H2").Copy
+Worksheets("Vets").Range("A67:H68").PasteSpecial Paste:=xlPasteValues
+Worksheets("Vets").Range("A67:H68").PasteSpecial Paste:=xlPasteFormats
+
+Worksheets("Week 3").Range("A34:H52").Copy
+Worksheets("Vets").Range("A69:H87").PasteSpecial Paste:=xlPasteValues
+Worksheets("Vets").Range("A69:H87").PasteSpecial Paste:=xlPasteFormats
+    
+Worksheets("Week 4").Range("A1:H2").Copy
+Worksheets("Vets").Range("A100:H101").PasteSpecial Paste:=xlPasteValues
+Worksheets("Vets").Range("A100:H101").PasteSpecial Paste:=xlPasteFormats
+
+Worksheets("Week 4").Range("A34:H52").Copy
+Worksheets("Vets").Range("A102:H120").PasteSpecial Paste:=xlPasteValues
+Worksheets("Vets").Range("A102:H120").PasteSpecial Paste:=xlPasteFormats
+
+'Format sheets for printing one week per page
+    ' Add page breaks
+Worksheets("Nurses").Rows(34).PageBreak = xlPageBreakManual
+Worksheets("Nurses").Rows(67).PageBreak = xlPageBreakManual
+Worksheets("Nurses").Rows(100).PageBreak = xlPageBreakManual
+
+Worksheets("Vets").Rows(34).PageBreak = xlPageBreakManual
+Worksheets("Vets").Rows(67).PageBreak = xlPageBreakManual
+Worksheets("Vets").Rows(100).PageBreak = xlPageBreakManual
+
+'Set PageSetup options
+Worksheets("Nurses").PageSetup.PaperSize = xlPaperA4
+Worksheets("Nurses").PageSetup.Orientation = xlLandscape
+Worksheets("Nurses").PageSetup.FitToPagesWide = 1
+
+Worksheets("Vets").PageSetup.PaperSize = xlPaperA4
+Worksheets("Vets").PageSetup.Orientation = xlLandscape
+Worksheets("Vets").PageSetup.FitToPagesWide = 1
+
+'Adjust columns to make up a landscape A4 page
+Worksheets("Nurses").Columns("A").AutoFit
+Worksheets("Vets").Columns("A").AutoFit
+
+Worksheets("Nurses").Columns("B:H").ColumnWidth = 12
+Worksheets("Vets").Columns("B:H").ColumnWidth = 12
+
+End Sub
+
